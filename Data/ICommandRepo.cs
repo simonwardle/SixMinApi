@@ -5,7 +5,7 @@ namespace SixMinApi.Data
     public interface ICommandRepo
     {
         Task SaveChangesAsync();
-        Task<Command?> GetCommandById(int id);
+        Task<Command?> GetCommandByIdAsync(int id);
         Task<IEnumerable<Command>> GetAllCommands();
         Task CreateCommand(Command cmd);
 

@@ -37,7 +37,7 @@ app.MapGet("api/v1/commands", async (ICommandRepo repo, IMapper Mapper) => {
 });
 
 app.MapGet("api/v1/commands/{id}", async (ICommandRepo repo, IMapper Mapper, int id) => {
-    var command = await repo.GetCommandById(id);
+    var command = await repo.GetCommandByIdAsync(id);
     if (command != null)
     {
         return Results.Ok(Mapper.Map<CommandReadDto>(command));
@@ -48,7 +48,7 @@ app.MapGet("api/v1/commands/{id}", async (ICommandRepo repo, IMapper Mapper, int
 app.MapPost("api/v1/commands", async (ICommandRepo repo, IMapper mapper, CommandCreateDto cmdCreateDto) => {
     var commandModel = mapper.Map<Command>(cmdCreateDto);
     await repo.CreateCommand(commandModel);
-    await repo.SaveChanges();
+    await repo.SaveChangesAsync();
 
     var cmdReadDto = mapper.Map<CommandReadDto>(commandModel);
     return Results.Created($"api/v1/commands/{cmdReadDto.Id}", cmdReadDto);

@@ -36,7 +36,7 @@ namespace SixMinApi.Data
            return await _context.Commands.ToListAsync();
         }
 
-        public async Task<Command?> GetCommandById(int id)
+        public async Task<Command?> GetCommandByIdAsync(int id)
         {
             return await _context.Commands.FirstOrDefaultAsync(c => c.Id == id);
         }
